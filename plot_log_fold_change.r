@@ -30,7 +30,7 @@ treat_tpm = treat_tpm + OFFSET
 
 fold_change = treat_tpm/ctl_tpm
 log2_fold_change = log2(fold_change)
-jpeg(file=outfile,width=480,height=480)
+jpeg(file=outfile,type="cairo",width=480,height=480)
 #ylim_min_max = c(-20,20) #log2(1million) is ~20
 #abs_fc = abs(log2_fold_change)
 ymax = round(abs(log2_fold_change)) +1

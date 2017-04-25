@@ -37,7 +37,7 @@ ctl_treat_tpm = c(ctl_tpm,treat_tpm)
 scaled_ctl_treat_tpm = c(scaled_ctl_tpm,scaled_treat_tpm)
 
 
-jpeg(file=outfile)
+jpeg(file=outfile,type="cairo")
 #jpeg(file=outfile,width=480,height=480)
 ymax = scaled_ctl_tpm
 ymin = 0
