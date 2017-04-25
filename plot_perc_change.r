@@ -8,10 +8,10 @@
 library(argparse)
 #library(Hmisc)
 
-description = "Creates a barplot depicting the differential expression of a gene or transcript between a control and treatment conditions."
+description = "Creates a bar graph depicting the differential expression of a gene or transcript between a control and treatment conditions."
 parser = ArgumentParser(description=description)
 parser$add_argument("--data-file",required=T,help="A file output by batch_cmp_two_rsem_results_files.py. This is a tab-delimited file with a header line having field names 1) feature, 2) control_dataset, 3) control_tpm, 4) treatment_dataset, 5) treatment_tpm. The next and final line contains the values for the defined fields.") 
-parser$add_argument("--outfile",required=T,help="The name of the JPEG output file containing a barplot.")
+parser$add_argument("--outfile",required=T,help="The name of the JPEG output file containing a bar graph.")
 
 args = parser$parse_args()
 

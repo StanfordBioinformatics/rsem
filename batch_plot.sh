@@ -12,7 +12,7 @@ module load python/2.7.9
 function help {
 	echo "Description:"
 	echo " Calls plot_perc_change.r in batch . Given a directory of raw plot files created by cmp_two_rsem_results_files.py, for "
-	echo " each .txt file in the directory it will create a barplot and save it as a JPEG in a subdirectory of -p called Barplots."
+	echo " each .txt file in the directory it will create a bar graph and save it as a JPEG in a subdirectory of -p called Barplots."
 	echo
   echo "Args:"
 	echo " -p The path to the directory containing the files to make plots out of. These would have been created using create_plot_raw_files.py"
@@ -41,16 +41,16 @@ then
 	help
 fi
 
-barplots_dir=${plots_dir}/Barplots
-if ! [[ -d $barplots_dir ]]
+bargraphs_dir=${plots_dir}/Barplots
+if ! [[ -d $bargraphs_dir ]]
 then
-	mkdir $barplots_dir
+	mkdir $bargraphs_dir
 fi
 
 for i in ${plots_dir}/*.txt
 do 
 	filename=$(basename $i)
-	outfile=${barplots_dir}/${filename%.txt}.jpeg
+	outfile=${bargraphs_dir}/${filename%.txt}.jpeg
 	echo $filename
 	Rscript plot_perc_change.r --data-file $i --outfile $outfile
 done
