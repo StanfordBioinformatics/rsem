@@ -38,7 +38,7 @@ for line in fh:
 	sample_rsem = line[0].strip()
 	ctl_rsem = line[1].strip()
 	feature = line[2].strip()
-	outfile = os.path.join(outdir,os.path.basename(sample_rsem) + "_rawplot_" + feature + ".txt")
+	outfile = os.path.join(outdir,os.path.basename(sample_rsem) + "_" + feature + ".txt")
 	
 
 	cmd = "cmp_two_rsem_results_files.py -c {ctl_rsem} -s {sample_rsem} -f {feature} --plot -o {outfile}".format(ctl_rsem=ctl_rsem,sample_rsem=sample_rsem,feature=feature,outfile=outfile)
