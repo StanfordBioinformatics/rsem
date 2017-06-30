@@ -49,7 +49,7 @@ len_subtext = length(subtext)
 bp = barplot(height=c(scaled_ctl_treat_tpm),main=t$feature,ylim=ylims,ylab="Knockdown Expression (%) Relative to Control",names.arg=c("Control","Treatment"),xlim=c(0,1),width=0.2)
 
 #minor.tick(nx=1,ny=2) #need to library(Hmisc) to use minor.tick().
-text(bp,0,round(ctl_treat_tpm),cex=1,pos=3) #add the actual TPM expression values at bottom of bars
+text(bp,0,round(ctl_treat_tpm - OFFSET),cex=1,pos=3) #add the actual TPM expression values at bottom of bars
 for (i in 1:len_subtext) {
 	mtext(subtext[i],side=1,line=i-1,outer=T,adj=0)
 }
