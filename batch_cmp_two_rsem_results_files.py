@@ -5,23 +5,26 @@ import os
 import sys
 import subprocess
 
-description = "Calls cmp_two_rsem_results_files.py in batch."
+description = "Calls cmp_two_rsem_results_files.py in batch with the --plot option set."
 
 parser = argparse.ArgumentParser(description=description,formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-i",required=True,help="""The tab-delimited input file identifying the sample and control RSEM gene/isoform result files to compare against each other for the gene/isoform of interest. Must contain header line as first line. Pick whaterer field-header names you want, but the order of the fields represent:
+parser.add_argument("-i",required=True,help="""The tab-delimited input file identifying the sample and control RSEM gene/isoform result files to compare against each other for the gene/isoform of interest. Must contain header line as first line. Pick whatever field-header names you want, but the order of the fields represent:
 	1) sample RSEM results file name,
 	2) control RSEM results file name,
 	3) gene/isoform id or name. 
 
 	Note that in field 3, the values should all be IDs or names, not a mixture of both.	
 	Lines beginning with a '#' will be skipped.""")
-parser.add_argument("-o",required=True,help="The output directory.")
+parser.add_argument("-o",required=True,help="The output directory. If the directory does not exist then it will be created (but not recursively, however, if there is more than one folder that would need to be created.")
 parser.add_argument("-c","--continue-on",action="store_true",help="Presence of this option indicates to continue on instead of raise an Exception if either the sample or the control RSEM file doesn't exist. In this case, only an error message will be written to stderr instead of an Exception killing the program flow.")
 parser.add_argument("--by-name",action="store_true",help="Presence of this option means that the values specified in column 3 of -i is a gene or transcript name, compared to an ID. They should all be names or IDs in this column, not a mix of both.")
 
 args = parser.parse_args()
 infile = args.i
 outdir = args.o
+if not os.path.isdir(outdir):
+	os.mkdir(outdir)
+
 continue_on = args.continue_on
 by_name = args.by_name
 

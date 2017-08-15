@@ -66,14 +66,14 @@ sample_mat = parse_rsem_expr_results(results_file=sample_mat_file,by_name=by_nam
 try:
 	ctl_dataline = ctl_mat[feature]
 except KeyError:
-	raise Exception("{feature} wasn't found in the file {ctl_mat_file}.".format(feature,ctl_mat_file=ctl_mat_file))
+	raise Exception("{feature} wasn't found in the file {ctl_mat_file}.".format(feature=feature,ctl_mat_file=ctl_mat_file))
 
 ctl_tpm = ctl_dataline[TPM_FIELD_INDEX]
 
 try:
 	sample_dataline = sample_mat[feature]
 except KeyError:
-	raise Exception("{feature} wasn't found in the file {sample_mat_file}.".format(feature,sample_mat_file=sample_mat_file))
+	raise Exception("{feature} wasn't found in the file {sample_mat_file}.".format(feature=feature,sample_mat_file=sample_mat_file))
 sample_tpm = sample_dataline[TPM_FIELD_INDEX]
 
 fout = open(outfile,'w')
