@@ -8,7 +8,7 @@ import subprocess
 description = "Calls cmp_two_rsem_results_files.py in batch with the --plot option set."
 
 parser = argparse.ArgumentParser(description=description,formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument("-i",required=True,help="""The tab-delimited input file identifying the sample and control RSEM gene/isoform result files to compare against each other for the gene/isoform of interest. Must contain header line as first line. Pick whatever field-header names you want, but the order of the fields represent:
+parser.add_argument("-i",required=True,help="""The tab-delimited input file identifying the sample and control RSEM gene/isoform result files to compare against each other for the gene/isoform of interest. Must contain header line as first line, which must start with a '#'.. Pick whatever field-header names you want, but the order of the fields represent:
 	1) sample RSEM results file name,
 	2) control RSEM results file name,
 	3) gene/isoform id or name. 
@@ -31,6 +31,9 @@ by_name = args.by_name
 RSEM_GENE_QUANT_SUFFIX = ".genes.results"
 fh = open(infile,"r")
 header = fh.readline()
+if not header.startswith("#"):
+	raise Exception("There must be a field-header line as the first line, starting with a '#' character.")
+
 for line in fh:
 	if line.startswith("#"):
 		continue
